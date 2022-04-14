@@ -39,7 +39,11 @@ end
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem 'mini_racer'
+
 group :development, :test do
+  gem 'capybara', '>= 2.15'
+  gem 'rspec-rails', '~> 3.7'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -56,6 +60,7 @@ group :development do
 end
 
 group :test do
+  gem 'simplecov', require: false
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
