@@ -1,29 +1,81 @@
-<p id="notice"><%= notice %></p>
+<html lang="en">
 
-<h1>Projects</h1>
+  <body style="background-color:#fcde67;">
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="projects">Tyler Verhovec&#39s Portfolio</a>
+      <div class="navbar-nav ml-auto">
 
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.title %></td>
-        <td><%= project.description %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <% if !current_user.present? %>
+          <a class="btn btn-light" role="button" <%= link_to 'Login', new_user_session_url %></a>
+          <div style="padding-left: 15px;">
+            <a class="btn btn-light" role="button" <%= link_to 'Sign Up', new_user_registration_url %></a>
+          </div>
 
-<br>
+        <% elsif current_user.present? %>
+          <a class="btn btn-light" role="button" <%= link_to 'Logout', destroy_user_session_url, :method => :delete %></a>
+        <% end %>
 
-<%= link_to 'New Project', new_project_path %>
+      </div>
+    </nav>
+
+    <div id="wrap">
+      <main role="main" id="main">
+
+        <p></p>
+        <div class="jumbotron" style="background-color:#fcde67; height:650px;">
+          <div class="container" style="width:1500px">
+            <h1 class="display-2", style="font-family:Courier New; text-align:center;">Tyler&#39s Portfolio</h1>
+            <p style="font-family:Times New Roman; font-size:200%; text-align:center;">
+              Tyler Verhovec is a third year student at the University of Colorado, Colorado Springs (UCCS) striving
+              for a Bachelors of Art in Computer Science degree with a minor in Game Design. He is expected
+              to graduate either in <strong>December of 2023 or May of 2024</strong> (it is unclear due to recent changes 
+              in his audit).
+              <br>
+              <a class="btn btn-dark" href="https://www.linkedin.com/in/tylerverhovec/" role="button">LinkedIn</a>
+              <a class="btn btn-dark" href="https://github.com/tylerverhovec" role="button">GitHub</a>
+              <a class="btn btn-dark" href="https://twitter.com/TylerVerhovec" role="button">Twitter</a>
+            </p>  
+          </div>
+        </div>
+
+        <h1 style="font-family:Courier New; text-align:center;">PROJECTS</h1>
+
+        <table class="center">
+          <% @projects.each do |project| %>
+            <td style="padding-left:20px;">
+              <tc>
+                <td>
+                  <div class="card text-white bg-dark mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= project.title %></h5>
+                      <p class="card-text"><%= project.description %></p>
+                      <a href="<%= project_path(project) %>" class="btn btn-light">View Project</a>
+                      <br>
+                      <a style="color:#FFFFFF"><%= link_to 'Edit', edit_project_path(project) %></a>
+                      <a><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></a>
+                    </div>
+                  </div>
+                </td>
+              </tc>
+            </td>
+          <% end %>
+        </table>
+        
+        <br><br><br>
+
+        <p style="text-align:right; padding-right:30px;">
+          <a class="btn btn-dark" role="button" <%= link_to 'New Project', new_project_path %></a>
+        </p>
+
+      </main>
+    </div>
+
+  </body>
+
+  <footer class="container text-center">
+    <p>Tyler Verhovec | (719)360-3705 | verhovectyler@gmail.com</p>
+  </footer>
+
+</html>
+
