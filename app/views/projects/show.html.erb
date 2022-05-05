@@ -1,14 +1,43 @@
-<p id="notice"><%= notice %></p>
+<html lang="en">
 
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
+  <body style="background-color:#fcde67;">
 
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" <%= link_to 'Tyler Verhovec\'s Portfolio', projects_path %></a>
+      <div class="navbar-nav ml-auto">
+        <% if !current_user.present? %>
+          <a class="btn btn-light" role="button" <%= link_to 'Login', new_user_session_url %></a>
+          <div style="padding-left: 15px;">
+            <a class="btn btn-light" role="button" <%= link_to 'Sign Up', new_user_registration_url %></a>
+          </div>
+        <% elsif current_user.present? %>
+          <a class="btn btn-light" role="button" <%= link_to 'Logout', destroy_user_session_url, :method => :delete %></a>
+        <% end %>
+      </div>
+    </nav>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+    <center style="margin-top:10%;">
+
+      <div class="card text-white bg-dark mb-3" style="max-width:40rem;">
+        <div class="card-header" style="height:4rem;">
+          <h3><%= @project.title %></h3>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><%= @project.description %></p>
+        </div>
+      </div>
+
+      <%= link_to 'Edit', edit_project_path(@project) %> |
+      <%= link_to 'Back', projects_path %>
+
+    </center>
+
+  </body>
+
+  <br>
+
+  <footer class="container text-center">
+      <p>Tyler Verhovec | (719)360-3705 | verhovectyler@gmail.com</p>
+  </footer>
+
+</html>

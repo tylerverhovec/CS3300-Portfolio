@@ -3,19 +3,16 @@
   <body style="background-color:#fcde67;">
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="projects">Tyler Verhovec&#39s Portfolio</a>
+      <a class="navbar-brand" <%= link_to 'Tyler Verhovec\'s Portfolio', projects_path %></a>
       <div class="navbar-nav ml-auto">
-
         <% if !current_user.present? %>
           <a class="btn btn-light" role="button" <%= link_to 'Login', new_user_session_url %></a>
           <div style="padding-left: 15px;">
             <a class="btn btn-light" role="button" <%= link_to 'Sign Up', new_user_registration_url %></a>
           </div>
-
         <% elsif current_user.present? %>
           <a class="btn btn-light" role="button" <%= link_to 'Logout', destroy_user_session_url, :method => :delete %></a>
         <% end %>
-
       </div>
     </nav>
 
