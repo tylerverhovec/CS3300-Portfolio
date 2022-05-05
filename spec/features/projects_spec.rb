@@ -22,7 +22,8 @@ RSpec.feature "Projects", type: :feature do
     scenario "should be successful" do
       fill_in "Description", with: "Test description"
       click_button "Create Project"
-      expect(page).to have_content("Project was successfully created")
+      expect(page).to have_content("Test title")
+      expect(page).to have_content("Test description")
     end
 
     scenario "should fail" do
@@ -43,7 +44,7 @@ RSpec.feature "Projects", type: :feature do
         fill_in "Description", with: "New description content"
       end
       click_button "Update Project"
-      expect(page).to have_content("Project was successfully updated")
+      expect(page).to have_content("New description content")
     end
 
     scenario "should fail" do
